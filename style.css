@@ -2,7 +2,11 @@ body {
     text-align: center;
     font-family: Arial, sans-serif;
     background-color: black;
-    color: black;
+}
+
+#head{
+    color: white;
+    margin-top: 5px;
 }
 
 canvas {
@@ -16,8 +20,8 @@ canvas {
     color: white;
 }
 
-button{
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+#displayscore{
+    color: white;
+    font-size: 20px;
 }
+

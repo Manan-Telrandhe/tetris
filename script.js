@@ -3,7 +3,7 @@ const canvas = document.getElementById("gamecanvas");
 
 const context = canvas.getContext("2d");
 
-const score = document.getElementById("score");
+const scoredisplay = document.getElementById("score");
 
 const row = 20;
 const col = 10;
@@ -12,6 +12,7 @@ const size = 30;
 const board = Array.from({ length: row }, () => Array(col).fill(0));
 
 let currentshape, gameover = false;
+let score=0;
 
 // tetromino shape
 const shapes = [
@@ -74,7 +75,7 @@ function move(colindex, rowindex) {
         currentshape.y += rowindex;
     } else if (rowindex > 0) {
         place();
-        clearLines();
+        clearlines();
     }
 }
 
@@ -87,12 +88,20 @@ function rotate() {
     }
 }
 
-function clearLines() {
+function clearlines() {
+    let linescleared = 0;
     for (let y = row - 1; y >= 0; y--) {
         if (board[y].every(cell => cell !== 0)) {
-            board.splice(y, 1);
-            board.unshift(Array(col).fill(0));
+            board.splice(y, 1); // used to remove filled row
+            board.unshift(Array(col).fill(0)); // used to add new row
+
+            linescleared++;
         }
+    }
+
+    if(linescleared>0){
+        score+=linescleared*10;
+        scoredisplay.textContent=score;
     }
 }
 
