@@ -1,0 +1,23 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: black;
+}
+
+canvas {
+    background-color: black;
+    display: block;
+    margin: 0 auto;
+    border: 2px solid white;
+}
+
+#ptag{
+    color: white;
+}
+
+button{
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
