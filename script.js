@@ -28,7 +28,7 @@ const shapes = [
 function draw(x, y, color) {
     context.fillStyle = color;
     context.fillRect(x * size, y * size, size, size);
-    context.strokeStyle = "white";
+    context.strokeStyle = "black";
     context.strokeRect(x * size, y * size, size, size);
 }
 
@@ -37,7 +37,7 @@ function drawboard() {
     for (let y = 0; y < row; y++) {
         for (let x = 0; x < col; x++) {
             if (board[y][x]) {
-                draw(x, y, "cyan");
+                draw(x, y, "white");
             }
         }
     }
@@ -92,8 +92,8 @@ function clearlines() {
     let linescleared = 0;
     for (let y = row - 1; y >= 0; y--) {
         if (board[y].every(cell => cell !== 0)) {
-            board.splice(y, 1); // used to remove filled row
-            board.unshift(Array(col).fill(0)); // used to add new row
+            board.splice(y, 1); 
+            board.unshift(Array(col).fill(0));
 
             linescleared++;
         }
@@ -119,7 +119,7 @@ function update() {
         drawboard();
         currentshape.shape.forEach((row, rowindex) => {
             row.forEach((value, colindex) => {
-                if (value) draw(currentshape.x + colindex, currentshape.y + rowindex, "red");
+                if (value) draw(currentshape.x + colindex, currentshape.y + rowindex, "grey");
             });
         });
         setTimeout(update, 500);
