@@ -25,6 +25,8 @@ const shapes = [
     [[0, 0, 1], [1, 1, 1]]  // L
 ];
 
+const colors = ["red","blue","green","yellow","purple","orange","cyan"];
+
 function draw(x, y, color) {
     context.fillStyle = color;
     context.fillRect(x * size, y * size, size, size);
@@ -37,21 +39,21 @@ function drawboard() {
     for (let y = 0; y < row; y++) {
         for (let x = 0; x < col; x++) {
             if (board[y][x]) {
-                draw(x, y, "white");
+                draw(x, y,board[y][x]);
             }
         }
     }
 }
 
 function randomshape() {
-    const shape = shapes[Math.floor(Math.random() * shapes.length)];
-    return { shape, x: 3, y: 0 };
+    const index = Math.floor(Math.random() * shapes.length);
+    return { shape:shapes[index], x: 3, y: 0, color:colors[index] };
 }
 
 function place() {
     currentshape.shape.forEach((row, rowindex) => {
         row.forEach((value, colindex) => {
-            if (value) board[currentshape.y + rowindex][currentshape.x + colindex] = 1;
+            if (value) board[currentshape.y + rowindex][currentshape.x + colindex] = currentshape.color;
         });
     });
     currentshape = randomshape();
@@ -119,7 +121,7 @@ function update() {
         drawboard();
         currentshape.shape.forEach((row, rowindex) => {
             row.forEach((value, colindex) => {
-                if (value) draw(currentshape.x + colindex, currentshape.y + rowindex, "grey");
+                if (value) draw(currentshape.x + colindex, currentshape.y + rowindex,currentshape.color);
             });
         });
         setTimeout(update, 500);
